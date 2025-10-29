@@ -1,0 +1,37 @@
+// calculator.js
+const readline = require("readline");
+// Create interface for input/output
+const rl = readline.createInterface({
+input: process.stdin,
+output: process.stdout
+});
+// Function to perform calculation
+function calculate(num1, num2, operator) {
+switch (operator) {
+case "+":
+return num1 + num2;
+case "-":
+return num1 - num2;
+case "*":
+case "x":
+return num1 * num2;
+case "/":
+if (num2 === 0) return "Error: Division by zero!";
+return num1 / num2;
+default:
+return "Invalid operator!";
+}
+}
+// Ask user for inputs
+rl.question("Enter first number: ", (first) => {
+const num1 = parseFloat(first);
+rl.question("Enter operator (+, -, *, /): ", (op) => {
+const operator = op.trim();
+rl.question("Enter second number: ", (second) => {
+const num2 = parseFloat(second);
+const result = calculate(num1, num2, operator);
+console.log(`\nResult: ${num1} ${operator} ${num2} = ${result}`);
+rl.close();
+});
+});
+});
